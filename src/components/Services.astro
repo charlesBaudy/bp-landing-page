@@ -1,0 +1,99 @@
+---
+const services = [
+	{
+		title: "Peinture Intérieure",
+		description: "Rénovation complète de vos murs intérieurs avec des finitions impeccables",
+		icon: "🏠"
+	},
+	{
+		title: "Peinture Extérieure",
+		description: "Protection et embellissement des façades avec des peintures résistantes",
+		icon: "🏗️"
+	},
+	{
+		title: "Revêtements Muraux",
+		description: "Pose de papier peint et autres revêtements décoratifs",
+		icon: "🎨"
+	},
+	{
+		title: "Réparations",
+		description: "Rebouchage des trous, traitement des fissures et préparation des surfaces",
+		icon: "🔧"
+	}
+];
+---
+
+<section id="services" class="services-section">
+	<div class="container">
+		<h2>Nos Services</h2>
+		<div class="services-grid">
+			{services.map(service => (
+				<div class="service-card">
+					<div class="service-icon">{service.icon}</div>
+					<h3>{service.title}</h3>
+					<p>{service.description}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.services-section {
+		padding: 4rem 0;
+		background: white;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	h2 {
+		text-align: center;
+		color: rgb(var(--primary));
+		margin-bottom: 3rem;
+		font-size: 2.5rem;
+		font-weight: 700;
+		position: relative;
+	}
+	h2::after {
+		content: "";
+		position: absolute;
+		bottom: -0.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100px;
+		height: 4px;
+		background: rgb(var(--accent));
+		border-radius: 2px;
+	}
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+	.service-card {
+		padding: 2rem;
+		border-radius: 8px;
+		background: rgb(var(--background));
+		text-align: center;
+		transition: transform 0.3s ease;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+	.service-card:hover {
+		transform: translateY(-5px);
+	}
+	.service-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	h3 {
+		color: rgb(var(--primary));
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+	p {
+		color: rgb(var(--text));
+		line-height: 1.5;
+	}
+</style>

@@ -1,0 +1,97 @@
+---
+const projects = [
+	{
+		title: "Rénovation Appartement",
+		description: "Peinture complète d'un appartement de 80m²",
+		image: "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?auto=format&fit=crop&w=800"
+	},
+	{
+		title: "Façade Villa",
+		description: "Ravalement de façade et peinture extérieure",
+		image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800"
+	},
+	{
+		title: "Local Commercial",
+		description: "Rénovation complète d'un espace de 120m²",
+		image: "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=800"
+	}
+];
+---
+
+<section id="portfolio" class="portfolio-section">
+	<div class="container">
+		<h2>Réalisations</h2>
+		<div class="portfolio-grid">
+			{projects.map(project => (
+				<div class="portfolio-item">
+					<img src={project.image} alt={project.title} loading="lazy" />
+					<div class="portfolio-info">
+						<h3>{project.title}</h3>
+						<p>{project.description}</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.portfolio-section {
+		padding: 4rem 0;
+		background: rgb(var(--background));
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	h2 {
+		text-align: center;
+		color: rgb(var(--primary));
+		margin-bottom: 3rem;
+		font-size: 2.5rem;
+		font-weight: 700;
+		position: relative;
+	}
+	h2::after {
+		content: "";
+		position: absolute;
+		bottom: -0.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100px;
+		height: 4px;
+		background: rgb(var(--accent));
+		border-radius: 2px;
+	}
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	.portfolio-item {
+		position: relative;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+	.portfolio-item img {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+	}
+	.portfolio-info {
+		padding: 1rem;
+		background: white;
+	}
+	h3 {
+		margin: 0 0 0.5rem 0;
+		color: rgb(var(--primary));
+		font-size: 1.5rem;
+	}
+	p {
+		margin: 0;
+		font-size: 0.9rem;
+		color: rgb(var(--text));
+	}
+</style>

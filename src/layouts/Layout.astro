@@ -1,0 +1,60 @@
+---
+import Navigation from '../components/Navigation.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="geo.region" content="FR-PAC" />
+    <meta name="geo.placename" content="Toulon" />
+    <meta name="geo.position" content="43.124228;5.928000" />
+    <meta name="ICBM" content="43.124228, 5.928000" />
+    <link rel="canonical" href="https://your-domain.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <Navigation />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: 23, 37, 84;
+    --accent: 79, 70, 229;
+    --text: 51, 51, 51;
+    --background: 249, 250, 251;
+    --card-bg: 255, 255, 255;
+  }
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: rgb(var(--background));
+    color: rgb(var(--text));
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+</style>

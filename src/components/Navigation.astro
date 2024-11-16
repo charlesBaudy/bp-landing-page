@@ -1,0 +1,84 @@
+---
+const navItems = [
+  { href: "/", text: "Accueil" },
+  { href: "/services", text: "Services" },
+  { href: "/realisations", text: "Réalisations" },
+  { href: "/contact", text: "Contact", isButton: true }
+];
+---
+
+<nav class="main-nav">
+  <div class="nav-container">
+    <a href="/" class="logo">Baudy Peinture</a>
+    <div class="nav-links">
+      {navItems.map(item => (
+        <a href={item.href} class={item.isButton ? "cta-button" : ""}>
+          {item.text}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<style>
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(var(--primary));
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: rgb(var(--primary));
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover {
+    color: rgb(var(--accent));
+  }
+  .nav-links .cta-button {
+    background: rgb(var(--accent));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-links .cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(var(--accent), 0.2);
+    color: white;
+  }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+</style>

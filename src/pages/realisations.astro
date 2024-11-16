@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Portfolio from '../components/Portfolio.astro';
+
+---
+
+<Layout 
+  title="Nos Réalisations | Baudy Peinture Toulon"
+  description="Découvrez nos réalisations de peinture à Toulon et ses environs. Projets résidentiels et commerciaux, avant/après, témoignages clients."
+>
+  <main>
+    <div class="page-header">
+      <h1>Nos Réalisations</h1>
+      <p>Des projets qui parlent d'eux-mêmes</p>
+    </div>
+    <Portfolio />
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">Témoignages Clients</h2>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial">
+            <p>"Travail soigné et professionnel. Je recommande vivement Baudy Peinture pour la qualité de leur prestation."</p>
+            <cite>- Marie L., La Seyne-sur-Mer</cite>
+          </blockquote>
+          <blockquote class="testimonial">
+            <p>"Excellent rapport qualité-prix. L'équipe est ponctuelle et respectueuse des lieux."</p>
+            <cite>- Pierre D., Toulon</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding-top: 70px;
+  }
+  .page-header {
+    background: rgb(var(--primary));
+    color: white;
+    padding: 8rem 1.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .page-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+  .testimonials {
+    padding: 6rem 0;
+    background: rgb(var(--background));
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(var(--primary));
+    position: relative;
+  }
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: rgb(var(--accent));
+    border-radius: 2px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .testimonial {
+    background: rgb(var(--card-bg));
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 0;
+  }
+  .testimonial p {
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .testimonial cite {
+    color: rgb(var(--primary));
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+    }
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>

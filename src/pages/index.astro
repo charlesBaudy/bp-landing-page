@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout 
+  title="Peintre en Bâtiment à Toulon | Services de Peinture Professionnelle"
+  description="Artisan peintre professionnel à Toulon. Peinture intérieure, extérieure et rénovation pour particuliers et professionnels. Devis gratuit."
+>
+  <main>
+    <Hero 
+      title="Peintre en Bâtiment"
+      subtitle="Plus de 15 ans d'expérience à votre service"
+    />
+    <About />
+    <Services />
+    <Portfolio />
+    <Contact />
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Artisan Peintre Toulon. Tous droits réservés. | SIRET: XX XXX XXX XXXXX</p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  footer {
+    background: rgb(var(--primary));
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Services from '../components/Services.astro';
+
+---
+
+<Layout 
+  title="Services de Peinture Professionnelle | Baudy Peinture Toulon"
+  description="Découvrez nos services de peinture professionnelle à Toulon : peinture intérieure, extérieure, ravalement de façade et rénovation. Devis gratuit."
+>
+  <main>
+    <div class="page-header">
+      <h1>Nos Services de Peinture</h1>
+      <p>Des solutions professionnelles adaptées à vos besoins</p>
+    </div>
+    <Services />
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Pourquoi Choisir Baudy Peinture ?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h3>Expertise Professionnelle</h3>
+            <p>Plus de 15 ans d'expérience dans le domaine de la peinture en bâtiment</p>
+          </div>
+          <div class="benefit-card">
+            <h3>Qualité Garantie</h3>
+            <p>Utilisation exclusive de produits professionnels et garantie décennale</p>
+          </div>
+          <div class="benefit-card">
+            <h3>Service Personnalisé</h3>
+            <p>Accompagnement et conseils personnalisés pour chaque projet</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding-top: 70px;
+  }
+  .page-header {
+    background: rgb(var(--primary));
+    color: white;
+    padding: 8rem 1.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .page-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+  .section {
+    padding: 6rem 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(var(--primary));
+    position: relative;
+  }
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: rgb(var(--accent));
+    border-radius: 2px;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .benefit-card {
+    background: rgb(var(--card-bg));
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  .benefit-card h3 {
+    color: rgb(var(--primary));
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+    }
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>

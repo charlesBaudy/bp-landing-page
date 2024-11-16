@@ -1,0 +1,125 @@
+---
+const features = [
+  { text: "Devis gratuit" },
+  { text: "Intervention rapide" },
+  { text: "Garantie décennale" },
+  { text: "Produits professionnels" }
+];
+
+const cities = [
+  "La Seyne-sur-Mer",
+  "Six-Fours-les-Plages",
+  "Hyères",
+  "La Valette-du-Var"
+];
+---
+
+<section id="about" class="about-section">
+  <div class="container">
+    <h2>À Propos</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p class="lead">Artisan peintre qualifié basé à Toulon, je mets mon expertise au service de vos projets de rénovation et d'embellissement.</p>
+        <p>Spécialisé dans la peinture intérieure et extérieure, je garantis un travail soigné et des finitions impeccables pour transformer vos espaces.</p>
+        <div class="features-grid">
+          {features.map(feature => (
+            <div class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span>{feature.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="service-area">
+        <h3>Zone d'Intervention</h3>
+        <div class="cities-grid">
+          {cities.map(city => (
+            <div class="city-item">{city}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 6rem 0;
+    background: rgb(var(--background));
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  h2 {
+    text-align: center;
+    color: rgb(var(--primary));
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+  }
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: rgb(var(--accent));
+    border-radius: 2px;
+  }
+  .about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+  }
+  .lead {
+    font-size: 1.25rem;
+    color: rgb(var(--primary));
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .feature-icon {
+    color: rgb(var(--accent));
+    font-weight: bold;
+  }
+  .service-area {
+    background: rgb(var(--card-bg));
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  .cities-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .city-item {
+    padding: 0.75rem;
+    background: rgb(var(--background));
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Contact from '../components/Contact.astro';
+
+---
+
+<Layout 
+  title="Contact | Baudy Peinture Toulon"
+  description="Contactez Baudy Peinture à Toulon pour vos projets de peinture. Devis gratuit, conseil personnalisé et intervention rapide."
+>
+  <main>
+    <div class="page-header">
+      <h1>Contactez-nous</h1>
+      <p>Pour tous vos projets de peinture</p>
+    </div>
+    <Contact />
+    <section class="info-section">
+      <div class="container">
+        <h2 class="section-title">Informations Pratiques</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Horaires d'Ouverture</h3>
+            <ul>
+              <li>Lundi - Vendredi : 8h - 18h</li>
+              <li>Samedi : Sur rendez-vous</li>
+              <li>Dimanche : Fermé</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Zone d'Intervention</h3>
+            <p>Toulon et agglomération dans un rayon de 30km</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding-top: 70px;
+  }
+  .page-header {
+    background: rgb(var(--primary));
+    color: white;
+    padding: 8rem 1.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .page-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+  .info-section {
+    padding: 6rem 0;
+    background: rgb(var(--background));
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(var(--primary));
+    position: relative;
+  }
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: rgb(var(--accent));
+    border-radius: 2px;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .info-card {
+    background: rgb(var(--card-bg));
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  .info-card h3 {
+    color: rgb(var(--primary));
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .info-card li {
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+    }
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>
