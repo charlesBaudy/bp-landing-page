@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Contact from '../../components/Contact.astro';
+
+const services = [
+  {
+    title: "Peinture Intérieure",
+    description: "Rénovation et peinture de vos espaces intérieurs à Toulon"
+  },
+  {
+    title: "Peinture Extérieure",
+    description: "Ravalement de façade et peinture extérieure pour votre maison à Toulon"
+  },
+  {
+    title: "Rénovation Appartement",
+    description: "Rénovation complète de votre appartement dans le centre-ville de Toulon"
+  }
+];
+
+const neighborhoods = [
+  "Haute-Ville",
+  "Basse-Ville",
+  "Le Mourillon",
+  "Saint-Jean-du-Var",
+  "Pont-du-Las"
+];
+---
+
+<Layout
+  title="Peintre Professionnel à Toulon | Baudy Peinture"
+  description="Artisan peintre à Toulon : services de peinture intérieure, extérieure et rénovation. Intervention dans tous les quartiers de Toulon. Devis gratuit."
+>
+  <main>
+    <div class="page-header">
+      <h1>Artisan Peintre à Toulon</h1>
+      <p>Expert en peinture et rénovation dans votre quartier</p>
+    </div>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="intro-text">
+          <h2>Services de Peinture à Toulon</h2>
+          <p>Baudy Peinture intervient dans tous les quartiers de Toulon pour vos travaux de peinture. Notre expertise locale nous permet de vous conseiller au mieux selon les spécificités de votre quartier et le style architectural de votre bien.</p>
+        </div>
+
+        <div class="services-grid">
+          {services.map(service => (
+            <div class="service-card">
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="neighborhoods">
+          <h2>Nos Zones d'Intervention à Toulon</h2>
+          <div class="neighborhoods-grid">
+            {neighborhoods.map(neighborhood => (
+              <div class="neighborhood-item">
+                <span class="icon">📍</span>
+                <span>{neighborhood}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact />
+  </main>
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1920') center/cover;
+    color: white;
+    padding: 8rem 1.5rem;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .page-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+  .content-section {
+    padding: 4rem 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .intro-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+  .intro-text h2 {
+    color: rgb(var(--primary));
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  .service-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .service-card h3 {
+    color: rgb(var(--primary));
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .neighborhoods {
+    text-align: center;
+  }
+  .neighborhoods h2 {
+    color: rgb(var(--primary));
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .neighborhood-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  .icon {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 1.5rem;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+    }
+    .intro-text h2, .neighborhoods h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

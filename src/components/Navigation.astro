@@ -2,6 +2,17 @@
 const navItems = [
   { href: "/", text: "Accueil" },
   { href: "/services", text: "Services" },
+  { 
+    href: "#", 
+    text: "Zones d'Intervention",
+    subItems: [
+      { href: "/zones/toulon", text: "Toulon" },
+      { href: "/zones/la-seyne-sur-mer", text: "La Seyne-sur-Mer" },
+      { href: "/zones/six-fours-les-plages", text: "Six-Fours-les-Plages" },
+      { href: "/zones/hyeres", text: "Hyères" },
+      { href: "/zones/la-valette-du-var", text: "La Valette-du-Var" }
+    ]
+  },
   { href: "/realisations", text: "Réalisations" },
   { href: "/contact", text: "Contact", isButton: true }
 ];
@@ -10,15 +21,37 @@ const navItems = [
 <nav class="main-nav">
   <div class="nav-container">
     <a href="/" class="logo">Baudy Peinture</a>
+    <button class="mobile-menu-button" aria-label="Menu">
+      <span class="hamburger"></span>
+    </button>
     <div class="nav-links">
       {navItems.map(item => (
-        <a href={item.href} class={item.isButton ? "cta-button" : ""}>
-          {item.text}
-        </a>
+        <div class={`nav-item ${item.subItems ? 'has-dropdown' : ''}`}>
+          <a href={item.href} class={item.isButton ? "cta-button" : ""}>
+            {item.text}
+          </a>
+          {item.subItems && (
+            <div class="dropdown-menu">
+              {item.subItems.map(subItem => (
+                <a href={subItem.href}>{subItem.text}</a>
+              ))}
+            </div>
+          )}
+        </div>
       ))}
     </div>
   </div>
 </nav>
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const navLinks = document.querySelector('.nav-links');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenuButton.classList.toggle('active');
+    navLinks?.classList.toggle('active');
+  });
+</script>
 
 <style>
   .main-nav {
@@ -55,14 +88,41 @@ const navItems = [
     gap: 2rem;
     align-items: center;
   }
-  .nav-links a {
+  .nav-item {
+    position: relative;
+  }
+  .nav-item a {
     text-decoration: none;
     color: rgb(var(--primary));
     font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-links a:hover {
+  .nav-item a:hover {
     color: rgb(var(--accent));
+  }
+  .has-dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    min-width: 200px;
+  }
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: rgb(var(--primary));
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  .dropdown-menu a:hover {
+    background-color: rgb(var(--background));
   }
   .nav-links .cta-button {
     background: rgb(var(--accent));
@@ -76,9 +136,83 @@ const navItems = [
     box-shadow: 0 4px 6px rgba(var(--accent), 0.2);
     color: white;
   }
+  .mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  .hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: rgb(var(--primary));
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: rgb(var(--primary));
+    transition: transform 0.3s;
+  }
+  .hamburger::before {
+    top: -6px;
+  }
+  .hamburger::after {
+    bottom: -6px;
+  }
+  .mobile-menu-button.active .hamburger {
+    background: transparent;
+  }
+  .mobile-menu-button.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+  .mobile-menu-button.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+
   @media (max-width: 768px) {
+    .mobile-menu-button {
+      display: block;
+    }
     .nav-links {
       display: none;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      flex-direction: column;
+      align-items: stretch;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-item {
+      width: 100%;
+    }
+    .nav-item a {
+      display: block;
+      padding: 0.5rem 0;
+    }
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      padding: 0 0 0 1rem;
+      display: block;
+    }
+    .nav-links .cta-button {
+      text-align: center;
+      margin-top: 1rem;
     }
   }
 </style>
