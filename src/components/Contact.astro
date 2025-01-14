@@ -26,11 +26,11 @@
           </ul>
         </div>
       </div>
-      <form class="contact-form">
-        <input type="text" placeholder="Votre nom" required />
-        <input type="email" placeholder="Votre email" required />
-        <input type="tel" placeholder="Votre téléphone" required />
-        <textarea placeholder="Votre message (Décrivez votre projet)" rows="5" required></textarea>
+      <form class="contact-form" data-netlify="true">
+        <input type="text" placeholder="Votre nom" required name="name" />
+        <input type="email" placeholder="Votre email" required name="email" />
+        <input type="tel" placeholder="Votre téléphone" required name="phone" />
+        <textarea placeholder="Votre message (Décrivez votre projet)" rows="5" required name="message"></textarea>
         <button type="submit">Demander un devis gratuit</button>
       </form>
     </div>
