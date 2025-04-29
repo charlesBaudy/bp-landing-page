@@ -32,8 +32,10 @@ const neighborhoods = [
 >
   <main>
     <div class="page-header">
-      <h1>Artisan Peintre à Toulon</h1>
-      <p>Expert en peinture et rénovation dans votre quartier</p>
+      <div class="container">
+        <h1>Artisan Peintre à Toulon</h1>
+        <p>Des projets qui parlent d'eux-mêmes</p>
+      </div>
     </div>
 
     <section class="content-section">
@@ -71,12 +73,15 @@ const neighborhoods = [
 </Layout>
 
 <style>
+  main {
+    padding-top: 0;
+  }
   .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1920') center/cover;
+    background: rgb(var(--primary));
     color: white;
     padding: 8rem 1.5rem;
     text-align: center;
-    margin-top: 70px;
+    margin-bottom: 4rem;
   }
   .page-header h1 {
     font-size: 3rem;

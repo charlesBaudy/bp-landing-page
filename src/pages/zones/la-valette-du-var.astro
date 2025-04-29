@@ -5,35 +5,35 @@ import Contact from '../../components/Contact.astro';
 const services = [
   {
     title: "Peinture Intérieure",
-    description: "Rénovation et peinture de vos espaces intérieurs à La Seyne-sur-Mer"
+    description: "Rénovation et peinture de vos espaces intérieurs à La Valette-du-Var"
   },
   {
     title: "Peinture Extérieure",
-    description: "Ravalement de façade et peinture extérieure pour votre maison à La Seyne-sur-Mer"
+    description: "Ravalement de façade et peinture extérieure pour votre maison à La Valette-du-Var"
   },
   {
-    title: "Rénovation Maison",
-    description: "Rénovation complète de votre maison à La Seyne-sur-Mer"
+    title: "Rénovation Appartement",
+    description: "Rénovation complète de votre appartement dans le centre-ville de La Valette-du-Var"
   }
 ];
 
 const neighborhoods = [
   "Centre-Ville",
-  "Les Sablettes",
-  "Mar Vivo",
-  "Tamaris",
-  "Balaguier"
+  "La Coupiane",
+  "Les Terrasses",
+  "La Valette Nord",
+  "La Valette Sud"
 ];
 ---
 
 <Layout
-  title="Peintre Professionnel à La Seyne-sur-Mer | Baudy Peinture"
-  description="Artisan peintre à La Seyne-sur-Mer : services de peinture intérieure, extérieure et rénovation. Intervention dans tous les quartiers. Devis gratuit."
+  title="Peintre Professionnel à La Valette-du-Var | Baudy Peinture"
+  description="Artisan peintre à La Valette-du-Var : services de peinture intérieure, extérieure et rénovation. Intervention dans tous les quartiers. Devis gratuit."
 >
   <main>
     <div class="page-header">
       <div class="container">
-        <h1>Artisan Peintre à La Seyne-sur-Mer</h1>
+        <h1>Artisan Peintre à La Valette-du-Var</h1>
         <p>Des projets qui parlent d'eux-mêmes</p>
       </div>
     </div>
@@ -41,8 +41,8 @@ const neighborhoods = [
     <section class="content-section">
       <div class="container">
         <div class="intro-text">
-          <h2>Services de Peinture à La Seyne-sur-Mer</h2>
-          <p>Baudy Peinture intervient dans tous les quartiers de La Seyne-sur-Mer pour vos travaux de peinture. Notre expertise locale nous permet de vous conseiller au mieux selon les spécificités de votre quartier et le style architectural de votre bien.</p>
+          <h2>Services de Peinture à La Valette-du-Var</h2>
+          <p>Baudy Peinture intervient dans tous les quartiers de La Valette-du-Var pour vos travaux de peinture. Notre expertise locale nous permet de vous conseiller au mieux selon les spécificités de votre quartier et le style architectural de votre bien.</p>
         </div>
 
         <div class="services-grid">
@@ -55,7 +55,7 @@ const neighborhoods = [
         </div>
 
         <div class="neighborhoods">
-          <h2>Nos Zones d'Intervention à La Seyne-sur-Mer</h2>
+          <h2>Nos Zones d'Intervention à La Valette-du-Var</h2>
           <div class="neighborhoods-grid">
             {neighborhoods.map(neighborhood => (
               <div class="neighborhood-item">
