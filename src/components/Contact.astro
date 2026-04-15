@@ -1,13 +1,14 @@
 ---
 ---
-<section id="contact" class="contact-section" itemscope itemtype="http://schema.org/PaintingCompany">
+<section id="contact" class="contact-section">
   <div class="container">
     <h2>Contactez-moi</h2>
     <div class="contact-content">
       <div class="contact-info">
-        <p itemprop="telephone">📱 06 20 15 64 10</p>
-        <p itemprop="email">✉️ contact@baudy-peinture.com</p>
-        <div class="business-hours" itemprop="openingHoursSpecification" itemscope itemtype="http://schema.org/OpeningHoursSpecification">
+        <p>📱 <a href="tel:+33620156410">06 20 15 64 10</a></p>
+        <p>✉️ <a href="mailto:contact@baudy-peinture.com">contact@baudy-peinture.com</a></p>
+        <p>📍 Toulon, Var (83)</p>
+        <div class="business-hours">
           <h3>Horaires d'ouverture :</h3>
           <ul>
             <li>Lundi - Vendredi : 8h - 18h</li>
@@ -18,11 +19,11 @@
         <div class="service-area">
           <h3>Zone d'intervention :</h3>
           <ul>
-            <li itemprop="areaServed">Toulon</li>
-            <li itemprop="areaServed">La Seyne-sur-Mer</li>
-            <li itemprop="areaServed">Six-Fours-les-Plages</li>
-            <li itemprop="areaServed">Hyères</li>
-            <li itemprop="areaServed">La Valette-du-Var</li>
+            <li>Toulon</li>
+            <li>La Seyne-sur-Mer</li>
+            <li>Six-Fours-les-Plages</li>
+            <li>Hyères</li>
+            <li>La Valette-du-Var</li>
           </ul>
         </div>
       </div>
@@ -77,6 +78,13 @@
   }
   .contact-info p {
     margin-bottom: 1rem;
+  }
+  .contact-info a {
+    color: rgb(var(--primary));
+    text-decoration: none;
+  }
+  .contact-info a:hover {
+    color: rgb(var(--accent));
   }
   .business-hours, .service-area {
     margin-top: 2rem;

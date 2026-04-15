@@ -4,20 +4,83 @@ import Navigation from '../components/Navigation.astro';
 interface Props {
   title: string;
   description: string;
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage = '/og-image.jpg' } = Astro.props;
+const siteUrl = 'https://www.baudy-peinture.com';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 ---
 
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Baudy Peinture" />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PaintingContractor",
+      "name": "Baudy Peinture",
+      "url": "https://www.baudy-peinture.com",
+      "telephone": "+33620156410",
+      "email": "contact@baudy-peinture.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Toulon",
+        "addressRegion": "Provence-Alpes-Côte d'Azur",
+        "postalCode": "83000",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.1242,
+        "longitude": 5.9280
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Toulon" },
+        { "@type": "City", "name": "La Seyne-sur-Mer" },
+        { "@type": "City", "name": "Six-Fours-les-Plages" },
+        { "@type": "City", "name": "Hyères" },
+        { "@type": "City", "name": "La Valette-du-Var" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "12:00"
+        }
+      ],
+      "priceRange": "€€",
+      "description": "Artisan peintre professionnel à Toulon. Peinture intérieure, extérieure et rénovation pour particuliers et professionnels."
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">

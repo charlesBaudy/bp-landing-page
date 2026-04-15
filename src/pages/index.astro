@@ -24,7 +24,9 @@ import Contact from '../components/Contact.astro';
 
   <footer>
     <div class="container">
-      <p>&copy; 2024 Artisan Peintre Toulon. Tous droits réservés.</p>
+      <p class="footer-name">Baudy Peinture — Artisan Peintre à Toulon</p>
+      <p class="footer-address">Toulon, Var (83) &nbsp;|&nbsp; <a href="tel:+33620156410">06 20 15 64 10</a> &nbsp;|&nbsp; <a href="mailto:contact@baudy-peinture.com">contact@baudy-peinture.com</a></p>
+      <p class="footer-copy">&copy; 2024 Baudy Peinture. Tous droits réservés.</p>
     </div>
   </footer>
 </Layout>
@@ -40,5 +42,26 @@ import Contact from '../components/Contact.astro';
     color: white;
     padding: 2rem 0;
     text-align: center;
+  }
+  .footer-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .footer-address {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .footer-address a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-address a:hover {
+    text-decoration: underline;
+  }
+  .footer-copy {
+    font-size: 0.85rem;
+    opacity: 0.6;
   }
 </style>
