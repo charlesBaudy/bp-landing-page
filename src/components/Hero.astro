@@ -1,4 +1,6 @@
 ---
+import heroImg from '../assets/bp-img/renovation_salon_mourillon.JPG';
+
 interface Props {
   title: string;
   subtitle: string;
@@ -7,7 +9,7 @@ interface Props {
 const { title, subtitle } = Astro.props;
 ---
 
-<header class="hero">
+<header class="hero" style={`background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${heroImg.src})`}>
   <div class="hero-content">
     <h1>{title} <span class="highlight">à Toulon</span></h1>
     <p class="subtitle">{subtitle}</p>
@@ -22,7 +24,8 @@ const { title, subtitle } = Astro.props;
 <style>
   .hero {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1920') center/cover;
+    background-position: center;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;

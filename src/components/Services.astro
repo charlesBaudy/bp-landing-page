@@ -1,25 +1,31 @@
 ---
+import { Image } from 'astro:assets';
+import imgChambre from '../assets/bp-img/peinture_chambre_toulon.jpg';
+import imgPlafond from '../assets/bp-img/plafond_bandol.jpg';
+import imgAppart from '../assets/bp-img/peinture_appartement_mourillon.JPG';
+import imgEscalier from '../assets/bp-img/escalier_apres.jpg';
+
 const services = [
 	{
 		title: "Peinture Intérieure",
-		description: "Rénovation complète de vos murs intérieurs avec des finitions impeccables",
-		icon: "🏠"
+		description: "Rénovation complète de vos murs intérieurs avec des finitions impeccables : chambres, salons, couloirs, plafonds.",
+		image: imgChambre,
 	},
 	{
 		title: "Peinture Extérieure",
-		description: "Protection et embellissement des façades avec des peintures résistantes",
-		icon: "🏗️"
+		description: "Protection et embellissement des façades avec des peintures résistantes aux intempéries, ravalement et enduit.",
+		image: imgPlafond,
 	},
 	{
 		title: "Revêtements Muraux",
-		description: "Pose de papier peint et autres revêtements décoratifs",
-		icon: "🎨"
+		description: "Pose de papier peint, toile de verre et autres revêtements décoratifs pour des intérieurs uniques.",
+		image: imgAppart,
 	},
 	{
-		title: "Réparations",
-		description: "Rebouchage des trous, traitement des fissures et préparation des surfaces",
-		icon: "🔧"
-	}
+		title: "Réparations & Rénovation",
+		description: "Rebouchage des fissures, traitement des surfaces, rénovation d'escaliers et préparation avant peinture.",
+		image: imgEscalier,
+	},
 ];
 ---
 
@@ -29,9 +35,13 @@ const services = [
 		<div class="services-grid">
 			{services.map(service => (
 				<div class="service-card">
-					<div class="service-icon">{service.icon}</div>
-					<h3>{service.title}</h3>
-					<p>{service.description}</p>
+					<div class="service-img">
+						<Image src={service.image} alt={service.title} width={600} height={400} loading="lazy" />
+					</div>
+					<div class="service-body">
+						<h3>{service.title}</h3>
+						<p>{service.description}</p>
+					</div>
 				</div>
 			))}
 		</div>
@@ -69,31 +79,39 @@ const services = [
 	}
 	.services-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		gap: 2rem;
 	}
 	.service-card {
-		padding: 2rem;
 		border-radius: 8px;
+		overflow: hidden;
 		background: rgb(var(--background));
-		text-align: center;
-		transition: transform 0.3s ease;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
 	.service-card:hover {
 		transform: translateY(-5px);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 	}
-	.service-icon {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
+	.service-img img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		display: block;
+	}
+	.service-body {
+		padding: 1.5rem;
+		text-align: center;
 	}
 	h3 {
 		color: rgb(var(--primary));
-		margin-bottom: 1rem;
-		font-size: 1.5rem;
+		margin-bottom: 0.75rem;
+		font-size: 1.25rem;
+		font-weight: 600;
 	}
 	p {
 		color: rgb(var(--text));
-		line-height: 1.5;
+		line-height: 1.6;
+		font-size: 0.95rem;
 	}
 </style>
