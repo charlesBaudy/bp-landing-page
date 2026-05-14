@@ -10,25 +10,32 @@ import Services from '../components/Services.astro';
 >
   <main>
     <div class="page-header">
-      <h1>Nos Services de Peinture</h1>
-      <p>Des solutions professionnelles adaptées à vos besoins</p>
+      <div class="container">
+        <p class="eyebrow">Expertises</p>
+        <h1>Nos Services</h1>
+        <p class="sub">Des solutions professionnelles adaptées à vos besoins</p>
+      </div>
     </div>
     <Services />
-    <section class="section">
+    <section class="why">
       <div class="container">
-        <h2 class="section-title">Pourquoi Choisir Baudy Peinture ?</h2>
+        <p class="eyebrow reveal">Nos engagements</p>
+        <h2 class="reveal">Pourquoi choisir<br>Baudy Peinture ?</h2>
         <div class="benefits-grid">
-          <div class="benefit-card">
+          <div class="benefit reveal reveal-delay-1">
+            <span class="benefit-num">01</span>
             <h3>Expertise Professionnelle</h3>
-            <p>Plus de 15 ans d'expérience dans le domaine de la peinture en bâtiment</p>
+            <p>Plus de 15 ans d'expérience dans le domaine de la peinture en bâtiment à Toulon et ses environs.</p>
           </div>
-          <div class="benefit-card">
+          <div class="benefit reveal reveal-delay-2">
+            <span class="benefit-num">02</span>
             <h3>Qualité Garantie</h3>
-            <p>Utilisation exclusive de produits professionnels et garantie décennale</p>
+            <p>Utilisation exclusive de produits professionnels — garantie décennale sur tous les travaux réalisés.</p>
           </div>
-          <div class="benefit-card">
+          <div class="benefit reveal reveal-delay-3">
+            <span class="benefit-num">03</span>
             <h3>Service Personnalisé</h3>
-            <p>Accompagnement et conseils personnalisés pour chaque projet</p>
+            <p>Accompagnement et conseils personnalisés à chaque étape, du devis à la réception du chantier.</p>
           </div>
         </div>
       </div>
@@ -37,77 +44,72 @@ import Services from '../components/Services.astro';
 </Layout>
 
 <style>
-  main {
-    padding-top: 70px;
-  }
+  main { padding-top: 0; }
+
   .page-header {
-    background: rgb(var(--primary));
-    color: white;
-    padding: 8rem 1.5rem;
-    text-align: center;
-    margin-bottom: 4rem;
+    background: var(--bg-dark);
+    padding: 10rem 0 5rem;
+  }
+  .eyebrow {
+    color: var(--accent-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
   .page-header h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: white;
+    margin-bottom: 0.75rem;
   }
-  .page-header p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-  }
-  .section {
-    padding: 6rem 0;
+  .sub { color: rgba(255,255,255,0.5); font-size: 1rem; }
+
+  .why {
+    padding: 7rem 0;
+    background: var(--bg-dark);
   }
   .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
   }
-  .section-title {
-    text-align: center;
-    margin-bottom: 4rem;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: rgb(var(--primary));
-    position: relative;
-  }
-  .section-title::after {
-    content: "";
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: rgb(var(--accent));
-    border-radius: 2px;
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: white;
+    margin-bottom: 3.5rem;
+    line-height: 1.2;
   }
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
   }
-  .benefit-card {
-    background: rgb(var(--card-bg));
-    padding: 2rem;
+  .benefit {
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    background: rgba(255,255,255,0.03);
   }
-  .benefit-card h3 {
-    color: rgb(var(--primary));
+  .benefit-num {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.15em;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
   }
-  @media (max-width: 768px) {
-    .page-header {
-      padding: 6rem 1.5rem;
-    }
-    .page-header h1 {
-      font-size: 2rem;
-    }
-    .section-title {
-      font-size: 2rem;
-    }
+  .benefit h3 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+  .benefit p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.9rem;
+    line-height: 1.65;
   }
 </style>

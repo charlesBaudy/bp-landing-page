@@ -1,97 +1,231 @@
 ---
+import { Image } from 'astro:assets';
+import imgAppartMourillon from '../assets/bp-img/peinture_appartement_mourillon.JPG';
+import imgChambreToulon from '../assets/bp-img/peinture_chambre_toulon.jpg';
+import imgChambreToulon2 from '../assets/bp-img/peinture_chambre_toulon_2.jpg';
+import imgSalonMourillon from '../assets/bp-img/renovation_salon_mourillon.JPG';
+import imgEscalierAvant from '../assets/bp-img/escalier_avant.jpg';
+import imgEscalierApres from '../assets/bp-img/escalier_apres.jpg';
+import imgCarrelage from '../assets/bp-img/carrelage_salle_de_bain.jpg';
+import imgSdbSanary from '../assets/bp-img/salle_de_bain_sanary.JPG';
+import imgSdbToulon from '../assets/bp-img/salle_de_bain_toulon.JPG';
+import imgFenetreAvant from '../assets/bp-img/peinture_fenetre_toulon_avant.jpg';
+import imgFenetreApres from '../assets/bp-img/peinture_fenetre_toulon.jpg';
+import imgPlafondBandol from '../assets/bp-img/plafond_bandol.jpg';
+
 const projects = [
-	{
-		title: "Rénovation Appartement",
-		description: "Peinture complète d'un appartement de 80m²",
-		image: "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?auto=format&fit=crop&w=800"
-	},
-	{
-		title: "Façade Villa",
-		description: "Ravalement de façade et peinture extérieure",
-		image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800"
-	},
-	{
-		title: "Local Commercial",
-		description: "Rénovation complète d'un espace de 120m²",
-		image: "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=800"
-	}
+  { title: "Appartement Mourillon", loc: "Toulon", image: imgAppartMourillon, size: "large" },
+  { title: "Rénovation Salon", loc: "Mourillon", image: imgSalonMourillon, size: "small" },
+  { title: "Chambre Principale", loc: "Toulon", image: imgChambreToulon, size: "small" },
+  { title: "Chambre Enfant", loc: "Toulon", image: imgChambreToulon2, size: "small" },
+  { title: "Plafond Décoratif", loc: "Bandol", image: imgPlafondBandol, size: "small" },
+  { title: "Salle de Bain", loc: "Sanary-sur-Mer", image: imgSdbSanary, size: "large" },
+  { title: "Salle de Bain", loc: "Toulon", image: imgSdbToulon, size: "small" },
+  { title: "Pose Carrelage", loc: "Toulon", image: imgCarrelage, size: "small" },
+];
+
+const avantApres = [
+  { title: "Escalier", avant: imgEscalierAvant, apres: imgEscalierApres },
+  { title: "Fenêtre", avant: imgFenetreAvant, apres: imgFenetreApres },
 ];
 ---
 
-<section id="portfolio" class="portfolio-section">
-	<div class="container">
-		<h2>Réalisations</h2>
-		<div class="portfolio-grid">
-			{projects.map(project => (
-				<div class="portfolio-item">
-					<img src={project.image} alt={project.title} loading="lazy" />
-					<div class="portfolio-info">
-						<h3>{project.title}</h3>
-						<p>{project.description}</p>
-					</div>
-				</div>
-			))}
-		</div>
-	</div>
+<section id="portfolio" class="portfolio">
+  <div class="container">
+
+    <div class="portfolio-header reveal">
+      <div>
+        <p class="eyebrow">Nos travaux</p>
+        <h2>Réalisations</h2>
+      </div>
+      <a href="/realisations" class="see-all">Voir tout →</a>
+    </div>
+
+    <div class="grid">
+      {projects.map((p, i) => (
+        <figure class={`item ${p.size} reveal reveal-delay-${(i % 4) + 1}`}>
+          <Image src={p.image} alt={p.title} width={900} height={700} loading="lazy" />
+          <figcaption>
+            <span class="item-title">{p.title}</span>
+            <span class="item-loc">{p.loc}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="aa-section reveal">
+      <h3 class="aa-heading">Avant / Après</h3>
+      <div class="aa-grid">
+        {avantApres.map(item => (
+          <div class="aa-card">
+            <p class="aa-title">{item.title}</p>
+            <div class="aa-pair">
+              <div class="aa-side">
+                <span class="aa-badge">Avant</span>
+                <Image src={item.avant} alt={`${item.title} avant`} width={600} height={450} loading="lazy" />
+              </div>
+              <div class="aa-side">
+                <span class="aa-badge after">Après</span>
+                <Image src={item.apres} alt={`${item.title} après`} width={600} height={450} loading="lazy" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <style>
-	.portfolio-section {
-		padding: 4rem 0;
-		background: rgb(var(--background));
-	}
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 1rem;
-	}
-	h2 {
-		text-align: center;
-		color: rgb(var(--primary));
-		margin-bottom: 3rem;
-		font-size: 2.5rem;
-		font-weight: 700;
-		position: relative;
-	}
-	h2::after {
-		content: "";
-		position: absolute;
-		bottom: -0.5rem;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 100px;
-		height: 4px;
-		background: rgb(var(--accent));
-		border-radius: 2px;
-	}
-	.portfolio-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 2rem;
-	}
-	.portfolio-item {
-		position: relative;
-		border-radius: 8px;
-		overflow: hidden;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	}
-	.portfolio-item img {
-		width: 100%;
-		height: 250px;
-		object-fit: cover;
-	}
-	.portfolio-info {
-		padding: 1rem;
-		background: white;
-	}
-	h3 {
-		margin: 0 0 0.5rem 0;
-		color: rgb(var(--primary));
-		font-size: 1.5rem;
-	}
-	p {
-		margin: 0;
-		font-size: 0.9rem;
-		color: rgb(var(--text));
-	}
+  .portfolio {
+    padding: 7rem 0;
+    background: var(--bg);
+  }
+  .portfolio-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    color: var(--primary);
+  }
+  .see-all {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .see-all:hover { opacity: 0.7; }
+
+  /* masonry-like grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+  .item {
+    position: relative;
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #E0DBD3;
+  }
+  .item.large { grid-column: span 2; }
+
+  .item img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .item.large img { height: 420px; }
+  .item:hover img { transform: scale(1.05); }
+
+  figcaption {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(18,17,15,0.75) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .item:hover figcaption { opacity: 1; }
+  .item-title {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .item-loc {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    margin-top: 0.2rem;
+  }
+
+  /* avant/après */
+  .aa-section { margin-top: 2rem; }
+  .aa-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: var(--primary);
+    margin-bottom: 1.75rem;
+  }
+  .aa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 1.5rem;
+  }
+  .aa-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 1.25rem;
+  }
+  .aa-title {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin-bottom: 0.9rem;
+  }
+  .aa-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .aa-side { position: relative; }
+  .aa-side img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+  .aa-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(18,17,15,0.6);
+    color: white;
+    margin-bottom: 0.4rem;
+  }
+  .aa-badge.after { background: var(--accent); }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .item.large { grid-column: span 2; }
+  }
+  @media (max-width: 580px) {
+    .grid { grid-template-columns: 1fr; }
+    .item.large { grid-column: span 1; }
+    .aa-grid { grid-template-columns: 1fr; }
+  }
 </style>

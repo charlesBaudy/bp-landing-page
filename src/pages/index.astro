@@ -5,63 +5,205 @@ import About from '../components/About.astro';
 import Services from '../components/Services.astro';
 import Portfolio from '../components/Portfolio.astro';
 import Contact from '../components/Contact.astro';
+
+const zones = [
+  { name: "Toulon", href: "/zones/toulon" },
+  { name: "La Seyne-sur-Mer", href: "/zones/la-seyne-sur-mer" },
+  { name: "Six-Fours-les-Plages", href: "/zones/six-fours-les-plages" },
+  { name: "Hyères", href: "/zones/hyeres" },
+  { name: "La Valette-du-Var", href: "/zones/la-valette-du-var" },
+];
+
+const faq = [
+  {
+    q: "Quel est le coût d'une peinture de maison à Toulon ?",
+    a: "Le tarif dépend de la surface, de l'état des murs et des finitions souhaitées. Comptez généralement entre 20 et 45 €/m² pour de la peinture intérieure. Nous établissons un devis gratuit et personnalisé sous 48h après visite du chantier."
+  },
+  {
+    q: "Intervenez-vous en dehors de Toulon ?",
+    a: "Oui, Baudy Peinture intervient dans tout le Var (83) : La Seyne-sur-Mer, Six-Fours-les-Plages, Hyères, La Valette-du-Var et les communes environnantes dans un rayon de 30 km autour de Toulon."
+  },
+  {
+    q: "Combien de temps dure un chantier de peinture ?",
+    a: "Une chambre de 15 m² prend généralement 1 à 2 jours. Un appartement de 60 m² complet entre 3 et 5 jours selon l'état des surfaces et les finitions. Nous vous communiquons un planning précis dès le devis."
+  },
+  {
+    q: "Proposez-vous des devis gratuits ?",
+    a: "Oui, le devis est entièrement gratuit et sans engagement. Contactez-nous par téléphone au 06 20 15 64 10 ou via le formulaire — nous intervenons sous 48h pour évaluer votre projet."
+  },
+  {
+    q: "Êtes-vous assurés et certifiés ?",
+    a: "Baudy Peinture est un artisan qualifié avec garantie décennale. Tous nos travaux sont couverts par notre assurance responsabilité civile professionnelle."
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
 ---
 
-<Layout 
-  title="Peintre en Bâtiment à Toulon | Services de Peinture Professionnelle"
-  description="Artisan peintre professionnel à Toulon. Peinture intérieure, extérieure et rénovation pour particuliers et professionnels. Devis gratuit."
+<Layout
+  title="Peintre en Bâtiment à Toulon | Baudy Peinture — Artisan Var (83)"
+  description="Artisan peintre à Toulon, Var (83). Peinture intérieure, extérieure, ravalement de façade. Devis gratuit sous 48h. Garantie décennale. 15 ans d'expérience."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
   <main>
-    <Hero 
+    <Hero
       title="Peintre en Bâtiment"
-      subtitle="Plus de 15 ans d'expérience à votre service"
+      subtitle="Plus de 15 ans d'expérience à Toulon et dans le Var"
     />
     <About />
     <Services />
     <Portfolio />
+
+    <!-- Zones d'intervention -->
+    <section class="zones-section">
+      <div class="container">
+        <p class="eyebrow">Zones d'intervention</p>
+        <h2>Votre artisan peintre<br>dans tout le Var</h2>
+        <p class="zones-intro">Baudy Peinture intervient à Toulon et dans les communes du Var (83) dans un rayon de 30 km. Sélectionnez votre ville pour découvrir nos services locaux.</p>
+        <div class="zones-grid">
+          {zones.map(z => (
+            <a href={z.href} class="zone-card">
+              <span class="zone-pin">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <span>{z.name}</span>
+              <span class="zone-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2>Tout ce que vous devez savoir</h2>
+        <div class="faq-list">
+          {faq.map((item, i) => (
+            <details class="faq-item" open={i === 0}>
+              <summary class="faq-q">{item.q}</summary>
+              <p class="faq-a">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <Contact />
   </main>
 
-  <footer>
-    <div class="container">
-      <p class="footer-name">Baudy Peinture — Artisan Peintre à Toulon</p>
-      <p class="footer-address">Toulon, Var (83) &nbsp;|&nbsp; <a href="tel:+33620156410">06 20 15 64 10</a> &nbsp;|&nbsp; <a href="mailto:contact@baudy-peinture.com">contact@baudy-peinture.com</a></p>
-      <p class="footer-copy">&copy; 2024 Baudy Peinture. Tous droits réservés.</p>
-    </div>
-  </footer>
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  footer {
-    background: rgb(var(--primary));
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-  }
-  .footer-name {
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.75rem;
     font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
-  .footer-address {
-    font-size: 0.95rem;
-    opacity: 0.85;
+
+  /* zones */
+  .zones-section {
+    padding: 7rem 0;
+    background: var(--bg);
+  }
+  .zones-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--primary);
     margin-bottom: 1rem;
+    line-height: 1.2;
   }
-  .footer-address a {
-    color: white;
+  .zones-intro {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 580px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .zone-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
     text-decoration: none;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
-  .footer-address a:hover {
-    text-decoration: underline;
+  .zone-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    transform: translateY(-2px);
   }
-  .footer-copy {
-    font-size: 0.85rem;
-    opacity: 0.6;
+  .zone-pin { color: var(--accent); flex-shrink: 0; }
+  .zone-arrow { margin-left: auto; color: var(--text-muted); font-size: 0.9rem; }
+
+  /* faq */
+  .faq-section {
+    padding: 7rem 0;
+    background: var(--bg-dark);
+  }
+  .faq-section .eyebrow { color: var(--accent-light); }
+  .faq-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    margin-bottom: 3rem;
+  }
+  .faq-list { max-width: 780px; display: flex; flex-direction: column; gap: 0; }
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+  .faq-q {
+    list-style: none;
+    padding: 1.5rem 0;
+    font-weight: 600;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    color: var(--accent-light);
+    font-size: 1.4rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-a {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    padding-bottom: 1.5rem;
   }
 </style>

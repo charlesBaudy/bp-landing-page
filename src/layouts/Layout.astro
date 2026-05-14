@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { title, description, ogImage = '/og-image.jpg' } = Astro.props;
-const siteUrl = 'https://www.baudy-peinture.com';
+const siteUrl = 'https://www.baudypeinture.fr';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 ---
 
@@ -23,7 +23,14 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Géolocalisation locale -->
+    <meta name="geo.region" content="FR-83" />
+    <meta name="geo.placename" content="Toulon, Var" />
+    <meta name="geo.position" content="43.1242;5.9280" />
+    <meta name="ICBM" content="43.1242, 5.9280" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -31,8 +38,16 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Baudy Peinture" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
 
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json">
@@ -40,9 +55,12 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
       "@context": "https://schema.org",
       "@type": "PaintingContractor",
       "name": "Baudy Peinture",
-      "url": "https://www.baudy-peinture.com",
+      "url": "https://www.baudypeinture.fr",
+      "logo": "https://www.baudypeinture.fr/favicon.svg",
+      "image": "https://www.baudypeinture.fr/og-image.jpg",
       "telephone": "+33620156410",
-      "email": "contact@baudy-peinture.com",
+      "email": "contact@baudypeinture.fr",
+      "hasMap": "https://maps.google.com/?q=Baudy+Peinture+Toulon",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Toulon",
@@ -56,11 +74,11 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
         "longitude": 5.9280
       },
       "areaServed": [
-        { "@type": "City", "name": "Toulon" },
-        { "@type": "City", "name": "La Seyne-sur-Mer" },
-        { "@type": "City", "name": "Six-Fours-les-Plages" },
-        { "@type": "City", "name": "Hyères" },
-        { "@type": "City", "name": "La Valette-du-Var" }
+        { "@type": "City", "name": "Toulon", "sameAs": "https://www.wikidata.org/wiki/Q42646" },
+        { "@type": "City", "name": "La Seyne-sur-Mer", "sameAs": "https://www.wikidata.org/wiki/Q168761" },
+        { "@type": "City", "name": "Six-Fours-les-Plages", "sameAs": "https://www.wikidata.org/wiki/Q216426" },
+        { "@type": "City", "name": "Hyères", "sameAs": "https://www.wikidata.org/wiki/Q45761" },
+        { "@type": "City", "name": "La Valette-du-Var", "sameAs": "https://www.wikidata.org/wiki/Q209358" }
       ],
       "openingHoursSpecification": [
         {
@@ -77,104 +95,187 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
         }
       ],
       "priceRange": "€€",
-      "description": "Artisan peintre professionnel à Toulon. Peinture intérieure, extérieure et rénovation pour particuliers et professionnels."
+      "description": "Artisan peintre professionnel à Toulon. Peinture intérieure, extérieure et rénovation pour particuliers et professionnels dans le Var (83).",
+      "knowsAbout": [
+        "Peinture intérieure",
+        "Peinture extérieure",
+        "Ravalement de façade",
+        "Pose de papier peint",
+        "Rénovation appartement",
+        "Enduit décoratif"
+      ],
+      "paymentAccepted": "Espèces, Virement bancaire, Chèque",
+      "currenciesAccepted": "EUR"
     }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <Navigation />
     <slot />
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <span class="footer-mark">BP</span>
+            <span class="footer-name">Baudy Peinture</span>
+          </div>
+          <div class="footer-links">
+            <a href="/services">Services</a>
+            <a href="/realisations">Réalisations</a>
+            <a href="/contact">Contact</a>
+          </div>
+          <p class="footer-copy">&copy; 2025 Baudy Peinture · Toulon, Var (83)</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --primary: 23, 37, 84;
-    --accent: 79, 70, 229;
-    --text: 51, 51, 51;
-    --background: 249, 250, 251;
-    --card-bg: 255, 255, 255;
-    --gradient-start: 79, 70, 229;
-    --gradient-end: 67, 56, 202;
+    --bg:        #F5F2EC;
+    --bg-dark:   #12110F;
+    --primary:   #12110F;
+    --accent:    #B5773A;
+    --accent-light: #D4973F;
+    --text:      #3A3830;
+    --text-muted: #89877F;
+    --border:    #E2DDD4;
+    --card:      #FFFFFF;
   }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
   html {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background: rgb(var(--background));
-    color: rgb(var(--text));
+    background: var(--bg);
+    color: var(--text);
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
   }
-  body {
+
+  body { margin: 0; padding: 0; line-height: 1.65; overflow-x: hidden; }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.15;
     margin: 0;
-    padding: 0;
-    line-height: 1.6;
+    color: var(--primary);
   }
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
-    margin: 0 0 1rem 0;
-  }
-  .page-header {
-    background: linear-gradient(
-      to right,
-      rgba(var(--gradient-start), 0.9),
-      rgba(var(--gradient-end), 0.9)
-    ),
-    url('/header-bg.jpg') center/cover;
-    color: white;
-    padding: 8rem 1.5rem;
-    text-align: center;
-    margin-top: 70px;
-  }
+
+  p { margin: 0; }
+
+  img { display: block; max-width: 100%; }
+
   .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
   }
-  .section {
-    padding: 6rem 0;
+
+  /* scroll-reveal utility */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .section-title {
-    text-align: center;
-    margin-bottom: 4rem;
-    font-size: 2.5rem;
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* page-header for inner pages */
+  .page-header {
+    background: var(--bg-dark);
+    color: white;
+    padding: 10rem 2rem 6rem;
+    margin-top: 0;
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .page-header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.15rem;
+  }
+
+  footer {
+    background: var(--bg-dark);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 2.5rem 0;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .footer-mark {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: rgb(var(--primary));
-    position: relative;
+    font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
   }
-  .section-title::after {
-    content: "";
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: rgb(var(--accent));
-    border-radius: 2px;
+  .footer-name {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
   }
-  .card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .footer-links {
+    display: flex;
+    gap: 2rem;
   }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  .footer-links a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
   }
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
+  .footer-copy {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+  }
+
   @media (max-width: 768px) {
-    .page-header {
-      padding: 6rem 1.5rem;
-    }
-    .section {
-      padding: 4rem 0;
-    }
-    .section-title {
-      font-size: 2rem;
-    }
+    .container { padding: 0 1.25rem; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
+
+<script is:inline>
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Re-run after page fully loaded (catches late-rendered elements)
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  });
+</script>

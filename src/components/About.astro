@@ -1,125 +1,174 @@
 ---
-const features = [
-  { text: "Devis gratuit" },
-  { text: "Intervention rapide" },
-  { text: "Garantie décennale" },
-  { text: "Produits professionnels" }
+const stats = [
+  { num: "15+", label: "ans d'expérience" },
+  { num: "500+", label: "chantiers réalisés" },
+  { num: "5", label: "villes d'intervention" },
 ];
 
-const cities = [
-  "La Seyne-sur-Mer",
-  "Six-Fours-les-Plages",
-  "Hyères",
-  "La Valette-du-Var"
+const features = [
+  { title: "Devis gratuit", desc: "Estimation rapide et sans engagement, sous 48h" },
+  { title: "Garantie décennale", desc: "Tous nos travaux sont couverts et assurés" },
+  { title: "Produits pros", desc: "Marques professionnelles pour un résultat durable" },
+  { title: "Ponctualité", desc: "Respect des délais et des chantiers clients" },
 ];
 ---
 
-<section id="about" class="about-section">
+<section id="about" class="about">
   <div class="container">
-    <h2>À Propos</h2>
-    <div class="about-content">
-      <div class="about-text">
-        <p class="lead">Artisan peintre qualifié basé à Toulon, je mets mon expertise au service de vos projets de rénovation et d'embellissement.</p>
-        <p>Spécialisé dans la peinture intérieure et extérieure, je garantis un travail soigné et des finitions impeccables pour transformer vos espaces.</p>
-        <div class="features-grid">
-          {features.map(feature => (
-            <div class="feature-item">
-              <span class="feature-icon">✓</span>
-              <span>{feature.text}</span>
-            </div>
-          ))}
-        </div>
+
+    <div class="about-header reveal">
+      <p class="eyebrow">Notre histoire</p>
+      <h2>L'artisanat au service<br>de votre intérieur</h2>
+    </div>
+
+    <div class="about-body">
+      <div class="about-text reveal reveal-delay-1">
+        <p class="lead">
+          Artisan peintre qualifié basé à Toulon, je transforme vos espaces avec soin et précision depuis plus de 15 ans.
+        </p>
+        <p class="body-text">
+          Spécialisé dans la peinture intérieure et extérieure, chaque chantier est traité avec la même exigence : une préparation rigoureuse des surfaces, des matériaux professionnels et des finitions impeccables qui durent dans le temps.
+        </p>
+        <a href="/contact" class="cta-link">Demander un devis →</a>
       </div>
-      <div class="service-area">
-        <h3>Zone d'Intervention</h3>
-        <div class="cities-grid">
-          {cities.map(city => (
-            <div class="city-item">{city}</div>
-          ))}
-        </div>
+
+      <div class="features-grid">
+        {features.map((f, i) => (
+          <div class={`feature reveal reveal-delay-${i + 1}`}>
+            <div class="feature-dot"></div>
+            <div>
+              <strong>{f.title}</strong>
+              <p>{f.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
+
+    <div class="stats-row">
+      {stats.map((s, i) => (
+        <div class={`stat-block reveal reveal-delay-${i + 1}`}>
+          <span class="stat-num">{s.num}</span>
+          <span class="stat-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
 
 <style>
-  .about-section {
-    padding: 6rem 0;
-    background: rgb(var(--background));
+  .about {
+    padding: 7rem 0;
+    background: var(--bg-dark);
+    color: white;
   }
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  h2 {
-    text-align: center;
-    color: rgb(var(--primary));
+  .about-header {
+    max-width: 640px;
     margin-bottom: 4rem;
-    font-size: 2.5rem;
-    font-weight: 700;
-    position: relative;
   }
-  h2::after {
-    content: "";
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: rgb(var(--accent));
-    border-radius: 2px;
+  .eyebrow {
+    color: var(--accent-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
-  .about-content {
+  .about-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    color: white;
+    line-height: 1.2;
+  }
+  .about-body {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-bottom: 5rem;
   }
   .lead {
-    font-size: 1.25rem;
-    color: rgb(var(--primary));
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
   }
+  .body-text {
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .cta-link {
+    color: var(--accent-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+  .cta-link:hover { opacity: 0.75; }
+
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    align-content: start;
   }
-  .feature-item {
+  .feature {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
+    align-items: flex-start;
   }
-  .feature-icon {
-    color: rgb(var(--accent));
-    font-weight: bold;
+  .feature-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.4rem;
   }
-  .service-area {
-    background: rgb(var(--card-bg));
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  .feature strong {
+    display: block;
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
   }
-  .cities-grid {
+  .feature p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  /* stats */
+  .stats-row {
     display: grid;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 3.5rem;
+    gap: 2rem;
   }
-  .city-item {
-    padding: 0.75rem;
-    background: rgb(var(--background));
-    border-radius: 6px;
-    font-weight: 500;
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
   }
-  @media (max-width: 768px) {
-    .about-content {
-      grid-template-columns: 1fr;
-    }
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: white;
+    line-height: 1;
+  }
+  .stat-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .about-body { grid-template-columns: 1fr; gap: 3rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
   }
 </style>

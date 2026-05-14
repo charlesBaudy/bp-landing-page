@@ -1,99 +1,158 @@
 ---
+import { Image } from 'astro:assets';
+import imgChambre from '../assets/bp-img/peinture_chambre_toulon.jpg';
+import imgPlafond from '../assets/bp-img/plafond_bandol.jpg';
+import imgAppart from '../assets/bp-img/peinture_appartement_mourillon.JPG';
+import imgEscalier from '../assets/bp-img/escalier_apres.jpg';
+
 const services = [
-	{
-		title: "Peinture Intérieure",
-		description: "Rénovation complète de vos murs intérieurs avec des finitions impeccables",
-		icon: "🏠"
-	},
-	{
-		title: "Peinture Extérieure",
-		description: "Protection et embellissement des façades avec des peintures résistantes",
-		icon: "🏗️"
-	},
-	{
-		title: "Revêtements Muraux",
-		description: "Pose de papier peint et autres revêtements décoratifs",
-		icon: "🎨"
-	},
-	{
-		title: "Réparations",
-		description: "Rebouchage des trous, traitement des fissures et préparation des surfaces",
-		icon: "🔧"
-	}
+  {
+    title: "Peinture Intérieure",
+    description: "Chambres, salons, couloirs, plafonds — finitions impeccables et préparation rigoureuse des surfaces.",
+    image: imgChambre,
+    tag: "01",
+  },
+  {
+    title: "Peinture Extérieure",
+    description: "Façades, enduits, ravalement — protection durable contre les intempéries méditerranéennes.",
+    image: imgPlafond,
+    tag: "02",
+  },
+  {
+    title: "Revêtements Muraux",
+    description: "Papier peint, toile de verre, enduits décoratifs pour des intérieurs uniques et personnalisés.",
+    image: imgAppart,
+    tag: "03",
+  },
+  {
+    title: "Rénovation Complète",
+    description: "Rebouchage, traitement des fissures, préparation des surfaces, escaliers — du sol au plafond.",
+    image: imgEscalier,
+    tag: "04",
+  },
 ];
 ---
 
-<section id="services" class="services-section">
-	<div class="container">
-		<h2>Nos Services</h2>
-		<div class="services-grid">
-			{services.map(service => (
-				<div class="service-card">
-					<div class="service-icon">{service.icon}</div>
-					<h3>{service.title}</h3>
-					<p>{service.description}</p>
-				</div>
-			))}
-		</div>
-	</div>
+<section id="services" class="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <p class="eyebrow">Ce que nous faisons</p>
+      <h2>Nos Services</h2>
+    </div>
+
+    <div class="services-grid">
+      {services.map((s, i) => (
+        <article class={`service-card reveal reveal-delay-${i + 1}`}>
+          <div class="card-img">
+            <Image src={s.image} alt={s.title} width={700} height={500} loading="lazy" />
+          </div>
+          <div class="card-body">
+            <span class="card-tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.description}</p>
+            <a href="/contact" class="card-link">Demander un devis →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
 </section>
 
 <style>
-	.services-section {
-		padding: 4rem 0;
-		background: white;
-	}
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 1rem;
-	}
-	h2 {
-		text-align: center;
-		color: rgb(var(--primary));
-		margin-bottom: 3rem;
-		font-size: 2.5rem;
-		font-weight: 700;
-		position: relative;
-	}
-	h2::after {
-		content: "";
-		position: absolute;
-		bottom: -0.5rem;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 100px;
-		height: 4px;
-		background: rgb(var(--accent));
-		border-radius: 2px;
-	}
-	.services-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
-	}
-	.service-card {
-		padding: 2rem;
-		border-radius: 8px;
-		background: rgb(var(--background));
-		text-align: center;
-		transition: transform 0.3s ease;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	}
-	.service-card:hover {
-		transform: translateY(-5px);
-	}
-	.service-icon {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
-	}
-	h3 {
-		color: rgb(var(--primary));
-		margin-bottom: 1rem;
-		font-size: 1.5rem;
-	}
-	p {
-		color: rgb(var(--text));
-		line-height: 1.5;
-	}
+  .services {
+    padding: 7rem 0;
+    background: var(--bg);
+  }
+  .services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    color: var(--primary);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--card);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    min-height: 280px;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: #FDFBF7; }
+
+  .card-img {
+    overflow: hidden;
+  }
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .service-card:hover .card-img img { transform: scale(1.05); }
+
+  .card-body {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .card-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--primary);
+  }
+  p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .card-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s;
+    display: inline-block;
+  }
+  .card-link:hover { opacity: 0.7; }
+
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { grid-template-columns: 1fr; }
+    .card-img { height: 220px; }
+  }
 </style>
