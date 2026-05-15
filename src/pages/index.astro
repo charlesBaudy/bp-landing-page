@@ -206,4 +206,18 @@ const faqSchema = {
     line-height: 1.75;
     padding-bottom: 1.5rem;
   }
+
+  @media (max-width: 768px) {
+    .zones-section { padding: 4rem 0; }
+    .zones-section h2 { margin-bottom: 0.75rem; }
+    .zones-intro { margin-bottom: 2rem; }
+    .zones-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .zone-card { padding: 0.85rem 1rem; font-size: 0.9rem; min-height: 48px; }
+    .faq-section { padding: 4rem 0; }
+    .faq-section h2 { margin-bottom: 2rem; }
+    .faq-q { padding: 1.1rem 0; font-size: 0.9rem; }
+  }
+  @media (max-width: 400px) {
+    .zones-grid { grid-template-columns: 1fr; }
+  }
 </style>

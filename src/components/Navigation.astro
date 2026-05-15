@@ -59,6 +59,17 @@ const navItems = [
     burger.classList.toggle('open');
     links.classList.toggle('open');
   });
+
+  // Mobile: toggle dropdown on tap instead of hover
+  document.querySelectorAll('.has-dropdown > a').forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        const parent = (trigger as HTMLElement).parentElement!;
+        parent.classList.toggle('dropdown-open');
+      }
+    });
+  });
 </script>
 
 <style>
@@ -208,6 +219,7 @@ const navItems = [
       position: static;
       transform: none;
       padding-top: 0;
+      display: none;
     }
     .dropdown-inner {
       box-shadow: none;
@@ -216,6 +228,6 @@ const navItems = [
       border-radius: 8px;
       margin-top: 0.25rem;
     }
-    .has-dropdown:hover .dropdown { display: block; }
+    .has-dropdown.dropdown-open .dropdown { display: block; }
   }
 </style>

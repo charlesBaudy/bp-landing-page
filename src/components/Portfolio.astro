@@ -176,7 +176,7 @@ const avantApres = [
   }
   .aa-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
     gap: 1.5rem;
   }
   .aa-card {
@@ -220,12 +220,20 @@ const avantApres = [
   .aa-badge.after { background: var(--accent); }
 
   @media (max-width: 900px) {
+    .portfolio { padding: 4rem 0; }
     .grid { grid-template-columns: repeat(2, 1fr); }
     .item.large { grid-column: span 2; }
+    .item img { height: 220px; }
+    .item.large img { height: 280px; }
+    .aa-section { margin-top: 1rem; }
   }
   @media (max-width: 580px) {
-    .grid { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; gap: 0.75rem; }
     .item.large { grid-column: span 1; }
-    .aa-grid { grid-template-columns: 1fr; }
+    .item img, .item.large img { height: 220px; }
+    .aa-pair { gap: 0.35rem; }
+    .aa-side img { height: 150px; }
+    .aa-card { padding: 1rem; }
+    figcaption { opacity: 1; }
   }
 </style>

@@ -167,8 +167,18 @@ const features = [
   }
 
   @media (max-width: 900px) {
-    .about-body { grid-template-columns: 1fr; gap: 3rem; }
+    .about { padding: 4rem 0; }
+    .about-body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .stats-row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 2.5rem;
+    }
+    .stat-num { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  }
+  @media (max-width: 480px) {
     .features-grid { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
   }
 </style>
