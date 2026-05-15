@@ -34,6 +34,24 @@ const { title, subtitle } = Astro.props;
       <a href="/contact" class="btn-primary">Devis gratuit</a>
       <a href="#portfolio" class="btn-ghost">Voir les réalisations</a>
     </div>
+    <div class="trust-badges">
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Garantie décennale
+      </div>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Assurance RC Pro
+      </div>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Devis sous 48h
+      </div>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        5/5 · Avis Google
+      </div>
+    </div>
   </div>
 
   <div class="hero-stats">
@@ -156,7 +174,30 @@ const { title, subtitle } = Astro.props;
     flex-wrap: wrap;
     opacity: 0;
     animation: fade-up 0.8s 0.95s ease forwards;
+    margin-bottom: 1.5rem;
   }
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    opacity: 0;
+    animation: fade-up 0.8s 1.05s ease forwards;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 0.35rem 0.85rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    backdrop-filter: blur(6px);
+  }
+  .badge svg { color: var(--accent-light); flex-shrink: 0; }
   .btn-primary {
     text-decoration: none;
     background: var(--accent);
@@ -254,7 +295,9 @@ const { title, subtitle } = Astro.props;
   @media (max-width: 768px) {
     .hero-content { padding: 5rem 1.25rem 1.5rem; }
     .hero-title { font-size: clamp(2.6rem, 10vw, 4rem); }
-    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .hero-actions { flex-direction: column; align-items: flex-start; margin-bottom: 1.25rem; }
+    .trust-badges { gap: 0.45rem; }
+    .badge { font-size: 0.74rem; }
     .btn-primary, .btn-ghost {
       width: 100%;
       text-align: center;
