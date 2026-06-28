@@ -30,27 +30,7 @@ const reviews = [
   },
 ];
 
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Baudy Peinture",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "4",
-    "bestRating": "5"
-  },
-  "review": reviews.map(r => ({
-    "@type": "Review",
-    "author": { "@type": "Person", "name": r.name },
-    "reviewRating": { "@type": "Rating", "ratingValue": r.rating, "bestRating": "5" },
-    "reviewBody": r.text,
-    "datePublished": r.date + "-01",
-  }))
-};
 ---
-
-<script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
 
 <section class="reviews">
   <div class="container">
